@@ -5,7 +5,9 @@ import java.util.Scanner;
 public class GestionDocuments {
     // Liste de documents dans la bibliothèque
     private static ArrayList<Document> listeDocuments = new ArrayList<>();
-    private static Scanner scanner = new Scanner(System.in);
+    public static Scanner scanner = new Scanner(System.in);
+
+
 
     // Méthode principale
     public static void main(String[] args) {
@@ -14,6 +16,7 @@ public class GestionDocuments {
 
     // Méthode pour afficher le menu principal
     private static void afficherMenuPrincipal() {
+
         while (true) {
             System.out.println("\nMenu Principal");
             System.out.println("1. Ajouter un document");
@@ -109,26 +112,104 @@ public class GestionDocuments {
         // Logique pour ajouter un manuel à la liste
         
     }
+// Méthode pour ajouter un manuel à la liste
+private static void ajouterManuel() {
+    System.out.println("\nAjouter un manuel");
 
-    // Méthode pour ajouter une revue à la liste
-    private static void ajouterRevue() {
-        // Logique pour ajouter une revue à la liste
-        
+    // Demander les détails du manuel à l'utilisateur
+    System.out.print("Numéro d'enregistrement : ");
+    String numEnregistrement = scanner.next();
+    System.out.print("Titre : ");
+    String titre = scanner.next();
+    System.out.print("Nombre de copies : ");
+    int nbCopies = scanner.nextInt();
+    System.out.print("Domaine : ");
+    String domaine = scanner.next();
+
+    // Créer une instance de Manuel avec les détails fournis
+    Manuel manuel = new Manuel(numEnregistrement, titre, nbCopies, domaine);
+
+    // Ajouter le manuel à la liste de documents
+    listeDocuments.add(manuel);
+
+    System.out.println("Le manuel a été ajouté avec succès à la bibliothèque.");
+}
+
+
+     // Méthode pour ajouter une revue à la liste
+private static void ajouterRevue() {
+    System.out.println("\nAjouter une revue");
+
+    // Demander les détails de la revue à l'utilisateur
+    System.out.print("Numéro d'enregistrement : ");
+    String numEnregistrement = scanner.next();
+    System.out.print("Titre : ");
+    String titre = scanner.next();
+    System.out.print("Nombre de copies : ");
+    int nbCopies = scanner.nextInt();
+    System.out.print("Mois de publication : ");
+    int moisPublication = scanner.nextInt();
+    System.out.print("Année de publication : ");
+    int anneePublication = scanner.nextInt();
+
+    // Créer une instance de Revue avec les détails fournis
+    Revue revue = new Revue(numEnregistrement, titre, nbCopies, moisPublication, anneePublication);
+
+    // Ajouter la revue à la liste de documents
+    listeDocuments.add(revue);
+
+    System.out.println("La revue a été ajoutée avec succès à la bibliothèque.");
+    System.out.println(listeDocuments);
+}
+
+
+   // Méthode pour ajouter un dictionnaire à la liste
+private static void ajouterDictionnaire() {
+    System.out.println("\nAjouter un dictionnaire");
+
+    // Demander les détails du dictionnaire à l'utilisateur
+    System.out.print("Numéro d'enregistrement : ");
+    String numEnregistrement = scanner.next();
+    System.out.print("Titre : ");
+    String titre = scanner.next();
+    System.out.print("Nombre de copies : ");
+    int nbCopies = scanner.nextInt();
+    System.out.print("Langue : ");
+    String langue = scanner.next();
+
+    // Créer une instance de Dictionnaire avec les détails fournis
+    Dictionnaire dictionnaire = new Dictionnaire(numEnregistrement, titre, nbCopies, langue);
+
+    // Ajouter le dictionnaire à la liste de documents
+    listeDocuments.add(dictionnaire);
+
+    System.out.println("Le dictionnaire a été ajouté avec succès à la bibliothèque.");
+    System.out.println(listeDocuments);
+
+}
+
+
+ 
+
+   // Méthode pour supprimer un document de la liste
+private static void supprimerDocument() {
+    System.out.println("\nSupprimer un document");
+    
+    // Demander le numéro d'enregistrement du document à supprimer
+    System.out.print("Entrez le numéro d'enregistrement du document : ");
+    String numEnregistrement = scanner.next();
+
+    // Recherche du document dans la liste
+    for (Document doc : listeDocuments) {
+        if (doc.getNumEnregistrement().equals(numEnregistrement)) {
+            listeDocuments.remove(doc); // Supprimer le document de la liste
+            System.out.println("Le document a été supprimé avec succès de la bibliothèque.");
+            return; // Sortir de la méthode après avoir supprimé le document
+        }
     }
-
-    // Méthode pour ajouter un dictionnaire à la liste
-    private static void ajouterDictionnaire() {
-        // Logique pour ajouter un dictionnaire à la liste
-        
-    }
-
-    // Méthode pour supprimer un document de la liste
-    private static void supprimerDocument() {
-        System.out.println("\nSupprimer un document");
-        // Logique pour supprimer un document de la liste
-        
-    }
-
+    // Si le document n'est pas trouvé
+    System.out.println("Document non trouvé.");
+}
     // Méthode pour afficher tous les documents de la liste
     private static void afficherTousDocuments() {
         System.out.println("\nListe de tous les documents :");
