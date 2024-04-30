@@ -80,10 +80,30 @@ public class GestionDocuments {
 
     // Méthode pour ajouter un roman à la liste
     private static void ajouterRoman() {
-        // Logique pour ajouter un roman à la liste
-        
-    }
+        System.out.println("\nAjouter un roman");
+        System.out.print("Entrez le numéro d'enregistrement : ");
+        String numeroEnregistrement = scanner.next();
+        System.out.print("Entrez le titre : ");
+        String titre = scanner.next();
+        System.out.print("Entrez le nombre de copies : ");
+        int nombreCopies = scanner.nextInt();
+        System.out.print("Entrez l'auteur : ");
+        String auteur = scanner.next();
+        System.out.print("Entrez le nombre de pages : ");
+        int nombrePages = scanner.nextInt();
+        System.out.print("Entrez les prix littéraires (séparés par des virgules) : ");
+        scanner.nextLine(); // Pour consommer le retour à la ligne
+        String prixLitterairesInput = scanner.nextLine();
+        String[] prixLitterairesArray = prixLitterairesInput.split(",");
+        ArrayList<String> prixLitteraires = new ArrayList<>();
+        for (String prix : prixLitterairesArray) {
+            prixLitteraires.add(prix.trim());
+        }
 
+        Roman roman = new Roman(numeroEnregistrement, titre, nombreCopies, auteur, nombrePages, prixLitteraires);
+        listeDocuments.add(roman);
+        System.out.println("Roman ajouté avec succès.");
+    }
     // Méthode pour ajouter un manuel à la liste
     private static void ajouterManuel() {
         // Logique pour ajouter un manuel à la liste
